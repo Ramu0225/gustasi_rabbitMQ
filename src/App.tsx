@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+
+import * as API from "./socket-api";
+import { useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
+import OrderPage from './pages/orderPage';
 
 function App() {
+  const [result, setResult] = useState(0);
+  useEffect(() => {
+    API.subscribe(({ result }: any) => {
+      console.log('client', result);
+      setResult(result);
+    })
+  },[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <OrderPage />
+      <h1>{ result }</h1>
     </div>
   );
 }
