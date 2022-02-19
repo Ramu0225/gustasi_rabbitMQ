@@ -1,5 +1,4 @@
 import { makeStyles } from "@mui/styles";
-import OrederInfo from "../components/confirmationOfOrder";
 import ItemsTable from "../components/itemsToOrder";
 import * as React from "react";
 import DisplayStatus from "../components/displayStatus";
@@ -39,9 +38,6 @@ const  OrderPage =():JSX.Element => {
 				<DisplayStatus />
 			</div>
 			<div className={classes.display}>
-				<div>
-					<OrederInfo />
-				</div>
 				<div>
 					<ItemsTable />
 				</div>

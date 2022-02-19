@@ -1,24 +1,35 @@
 
-import * as API from "./socket-api";
+
+import React from "react";
 import { useEffect } from 'react';
 import { useState } from 'react';
 import './App.css';
 import OrderPage from './pages/orderPage';
+import ChefOrderPage from "./pages/chefOrderPage";
+import {
+	Route,
+	Routes,
+	BrowserRouter as Router,
+	useRoutes,
+} from "react-router-dom";
 
 function App() {
-  const [result, setResult] = useState(0);
-  useEffect(() => {
-    API.subscribe(({ result }: any) => {
-      console.log('client', result);
-      setResult(result);
-    })
-  },[])
+  
+
+  const Appi = () => {
+		let routes = useRoutes([
+			{ path: "/", element: <OrderPage /> },
+			{ path: "order", element: <ChefOrderPage /> },
+		]);
+		return routes;
+	};
   return (
-    <div className="App">
-      <OrderPage />
-      <h1>{ result }</h1>
-    </div>
-  );
+		<section className="App">
+      <Router>
+        <Appi />
+			</Router>
+		</section>
+	);
 }
 
 export default App;
